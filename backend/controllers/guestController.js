@@ -3,56 +3,59 @@ const jwt = require("jsonwebtoken");
 const generateToken = require("../utils/generateToken");
 const { JWT_SECRET } = require("../config/jwt");
 
-// ➕ Add Guest
+// إضافة ضيف
 exports.addGuest = async (req, res) => {
   try {
-    const guest = await Guest.create({
-      name: req.body.name,
-    });
-
+    const { name, weddingId } = req.body;
+    const guest = await Guest.create({ name, wedding: weddingId });
     const token = generateToken({ id: guest._id });
-
     guest.token = token;
     await guest.save();
-
     res.json(guest);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// 🔍 Check-in Guest
+// جلب ضيوف حفلة
+exports.getGuests = async (req, res) => {
+  try {
+    const guests = await Guest.find({ wedding: req.params.weddingId });
+    res.json(guests);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// تسجيل دخول ضيف
 exports.checkin = async (req, res) => {
   try {
     const { token } = req.body;
-
     const decoded = jwt.verify(token, JWT_SECRET);
-
     const guest = await Guest.findById(decoded.id);
 
     if (!guest) return res.json({ status: "invalid" });
-
-    if (guest.used) return res.json({ status: "already_used" });
+    if (guest.used)
+      return res.json({ status: "already_used", name: guest.name });
 
     guest.used = true;
     guest.checkinTime = new Date();
     await guest.save();
 
-    // 🔥 Socket event
     const io = req.app.get("io");
-    io.emit("guest_checked_in", {
-      name: guest.name,
-    });
+    io.emit("guest_checked_in", { name: guest.name });
 
     res.json({ status: "success", name: guest.name });
   } catch (err) {
     res.json({ status: "invalid_token" });
   }
 };
-exports.getGuests = async (req, res) => {
+
+// حذف ضيف
+exports.deleteGuest = async (req, res) => {
   try {
-    const guests = await Guest.find();
-    res.json(guests);
+    await Guest.findByIdAndDelete(req.params.id);
+    res.json({ message: "Deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

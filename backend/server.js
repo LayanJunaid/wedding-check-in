@@ -6,6 +6,7 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 const guestRoutes = require("./routes/guestRoutes");
 const authRoutes = require("./routes/authRoutes");
+const weddingRoutes = require("./routes/weddingRoutes");
 const { initSocket } = require("./sockets/socket");
 
 const app = express();
@@ -27,6 +28,7 @@ initSocket(io);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/guests", guestRoutes);
+app.use("/api/weddings", weddingRoutes);
 
 server.listen(process.env.PORT || 5000, () => {
   console.log("Server running");
