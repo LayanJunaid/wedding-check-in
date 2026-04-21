@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const connectDB = require("./config/db");
 const guestRoutes = require("./routes/guestRoutes");
+const authRoutes = require("./routes/authRoutes");
 const { initSocket } = require("./sockets/socket");
 
 const app = express();
@@ -16,7 +17,6 @@ connectDB();
 
 const server = http.createServer(app);
 
-// 🔥 Socket setup
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: { origin: "*" },
@@ -25,9 +25,9 @@ const io = new Server(server, {
 app.set("io", io);
 initSocket(io);
 
-// Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/guests", guestRoutes);
 
 server.listen(process.env.PORT || 5000, () => {
-  console.log("Server running ");
+  console.log("Server running");
 });
