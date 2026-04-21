@@ -1,7 +1,7 @@
 import QRCode from "qrcode.react";
 
 function QRGenerator({ token }) {
-  const url = `http://localhost:5173/scanner?token=${token}`;
+  const url = `${import.meta.env.VITE_FRONTEND_URL}/scanner?token=${token}`;
 
   return (
     <div className="flex flex-col items-center gap-3">
