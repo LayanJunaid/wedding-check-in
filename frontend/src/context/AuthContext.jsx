@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
       api
         .get("/auth/me")
         .then((res) => {
-          setUser(res.data.user); // ✅ FIX
+          setUser(res.data); // ✅ FIX: no .user
         })
         .catch(() => {
           localStorage.removeItem("token");
@@ -31,8 +31,8 @@ export function AuthProvider({ children }) {
 
     localStorage.setItem("token", res.data.token);
 
-    setUser(res.data.user); // ✅ FIX
-    return res.data.user; // ✅ FIX
+    setUser(res.data); // ✅ FIX
+    return res.data;
   };
 
   const register = async (name, email, password, role) => {
@@ -45,8 +45,8 @@ export function AuthProvider({ children }) {
 
     localStorage.setItem("token", res.data.token);
 
-    setUser(res.data.user); // ✅ FIX
-    return res.data.user; // ✅ FIX
+    setUser(res.data); // ✅ FIX
+    return res.data;
   };
 
   const logout = () => {
