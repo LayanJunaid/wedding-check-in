@@ -1,25 +1,13 @@
-const BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api/guests";
+import axios from "axios";
 
-export const addGuest = async (name) => {
-  const res = await fetch(`${BASE_URL}/add`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name }),
-  });
-  return res.json();
-};
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+});
 
-export const checkinGuest = async (token) => {
-  const res = await fetch(`${BASE_URL}/checkin`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ token }),
-  });
-  return res.json();
-};
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
 
-export const getGuests = async () => {
-  const res = await fetch(BASE_URL);
-  return res.json();
-};
+export default api;
