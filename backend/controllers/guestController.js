@@ -49,3 +49,11 @@ exports.checkin = async (req, res) => {
     res.json({ status: "invalid_token" });
   }
 };
+exports.getGuests = async (req, res) => {
+  try {
+    const guests = await Guest.find();
+    res.json(guests);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
