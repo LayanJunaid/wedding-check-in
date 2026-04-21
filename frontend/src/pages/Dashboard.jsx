@@ -27,7 +27,7 @@ function Dashboard() {
         <div className="space-y-2">
           {guests.map((g, i) => (
             <div key={i} className="bg-white p-3 rounded-lg shadow">
-              🎉 {g}
+              {g}
             </div>
           ))}
         </div>

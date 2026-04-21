@@ -47,7 +47,7 @@ function Weddings() {
       <Toaster />
       <nav className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">💍</span>
+          <span className="text-2xl"></span>
           <span className="font-bold text-gray-800 text-lg">
             Wedding Check-in
           </span>
@@ -123,7 +123,7 @@ function Weddings() {
           ))}
           {weddings.length === 0 && (
             <div className="col-span-2 text-center py-16 text-gray-400">
-              <div className="text-5xl mb-3">💍</div>
+              <div className="text-5xl mb-3"></div>
               <p>No weddings yet. Create your first one!</p>
             </div>
           )}

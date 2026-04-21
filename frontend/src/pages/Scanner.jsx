@@ -67,7 +67,7 @@ function Scanner() {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-100">
       <nav className="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">💍</span>
+          <span className="text-2xl"></span>
           <span className="font-bold text-gray-800">Security Scanner</span>
         </div>
         <button
@@ -80,7 +80,7 @@ function Scanner() {
 
       <div className="max-w-md mx-auto p-6">
         <div className="bg-white rounded-3xl shadow-xl p-8 text-center">
-          <div className="text-5xl mb-4">📷</div>
+          <div className="text-5xl mb-4"></div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
             Scan QR Code
           </h1>
@@ -90,7 +90,7 @@ function Scanner() {
 
           <label className="block cursor-pointer">
             <div className="border-2 border-dashed border-pink-300 rounded-2xl p-8 hover:border-pink-500 hover:bg-pink-50 transition">
-              <div className="text-4xl mb-2">📤</div>
+              <div className="text-4xl mb-2"></div>
               <p className="text-pink-500 font-medium">Tap to scan QR</p>
               <p className="text-gray-400 text-xs mt-1">Camera or gallery</p>
             </div>

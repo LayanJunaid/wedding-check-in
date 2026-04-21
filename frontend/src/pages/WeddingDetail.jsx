@@ -72,7 +72,7 @@ function WeddingDetail() {
           >
             ←
           </button>
-          <span className="text-2xl">💍</span>
+          <span className="text-2xl"></span>
           <span className="font-bold text-gray-800">{wedding?.name}</span>
         </div>
         <div className="flex items-center gap-4">
@@ -117,7 +117,7 @@ function WeddingDetail() {
                   : "bg-white text-gray-500 hover:bg-pink-50"
               }`}
             >
-              {t === "guests" ? "👥 Guests" : "📊 Dashboard"}
+              {t === "guests" ? " Guests" : "Dashboard"}
             </button>
           ))}
         </div>
@@ -169,7 +169,7 @@ function WeddingDetail() {
                       onClick={() => setSelectedGuest(g)}
                       className="bg-pink-100 hover:bg-pink-200 text-pink-600 text-sm px-4 py-2 rounded-xl transition"
                     >
-                      🎫 Invite
+                      Invite
                     </button>
                     <button
                       onClick={() => handleDelete(g._id)}
@@ -219,11 +219,11 @@ function WeddingDetail() {
                       <td className="px-6 py-4">
                         {g.used ? (
                           <span className="bg-green-100 text-green-600 text-xs px-3 py-1 rounded-full font-medium">
-                            ✅ Checked In
+                            Checked In
                           </span>
                         ) : (
                           <span className="bg-gray-100 text-gray-500 text-xs px-3 py-1 rounded-full font-medium">
-                            ⏳ Pending
+                            Pending
                           </span>
                         )}
                       </td>
@@ -255,10 +255,10 @@ function WeddingDetail() {
               className="bg-gradient-to-br from-pink-400 to-rose-500 rounded-2xl p-6 text-white text-center mb-6"
               style={{ fontFamily: "serif" }}
             >
-              <div className="text-4xl mb-2">💍</div>
+              <div className="text-4xl mb-2"></div>
               <h3 className="text-xl font-bold mb-1">{wedding?.name}</h3>
               <p className="text-pink-100 text-sm mb-4">
-                📅{" "}
+                {" "}
                 {wedding &&
                   new Date(wedding.date).toLocaleDateString("en-US", {
                     weekday: "long",
@@ -284,7 +284,7 @@ function WeddingDetail() {
                 onClick={downloadInvite}
                 className="flex-1 bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 rounded-xl transition"
               >
-                ⬇️ Download
+                ⬇ Download
               </button>
               <button
                 onClick={() => setSelectedGuest(null)}
