@@ -14,7 +14,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route path="/" element={<Navigate to="/weddings" />} />
+
           <Route
             path="/weddings"
             element={
@@ -23,6 +25,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/weddings/:id"
             element={
@@ -31,6 +34,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/scan"
             element={
@@ -39,7 +43,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/scanner" element={<Scanner />} />
+
+          {/* ❌ حذفنا /scanner لأنه يسبب لخبطة */}
         </Routes>
       </BrowserRouter>
     </AuthProvider>

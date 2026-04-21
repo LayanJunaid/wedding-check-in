@@ -9,11 +9,17 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (token) {
       api
         .get("/auth/me")
-        .then((res) => setUser(res.data))
-        .catch(() => localStorage.removeItem("token"))
+        .then((res) => {
+          setUser(res.data.user); // ✅ FIX
+        })
+        .catch(() => {
+          localStorage.removeItem("token");
+          setUser(null);
+        })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
@@ -22,9 +28,11 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     const res = await api.post("/auth/login", { email, password });
+
     localStorage.setItem("token", res.data.token);
-    setUser(res.data);
-    return res.data;
+
+    setUser(res.data.user); // ✅ FIX
+    return res.data.user; // ✅ FIX
   };
 
   const register = async (name, email, password, role) => {
@@ -34,9 +42,11 @@ export function AuthProvider({ children }) {
       password,
       role,
     });
+
     localStorage.setItem("token", res.data.token);
-    setUser(res.data);
-    return res.data;
+
+    setUser(res.data.user); // ✅ FIX
+    return res.data.user; // ✅ FIX
   };
 
   const logout = () => {
