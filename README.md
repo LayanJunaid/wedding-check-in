@@ -15,6 +15,9 @@ https://github.com/LayanJunaid/wedding-check-in.git
 
 ### Login Page
 ![Login Page](./screenshots/login.png)
+<img width="2846" height="1470" alt="image" src="https://github.com/user-attachments/assets/c56e39dd-af0d-4fbc-9654-5ca6d4ca84e0" />
+
+
 
 ### My Weddings Page
 ![My Weddings Page](./screenshots/my-weddings.png)
